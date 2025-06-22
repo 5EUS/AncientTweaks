@@ -1,0 +1,4 @@
+name: AncientTweaks
+version: 0.1
+main: com.fiveeus.ancienttweaks.AncientTweaks
+api-version: 1.20
