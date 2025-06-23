@@ -7,6 +7,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Event;
 
+import com.fiveeus.ancienttweaks.Events.BaseListener;
+
 public abstract class BaseFeature {
 
     protected Boolean isEnabled;
@@ -14,7 +16,8 @@ public abstract class BaseFeature {
     protected String name;
     protected FeatureType featureType;
     protected String configEnabledStr;
-    
+    protected BaseListener listener;
+
     public abstract void doFeature(Event e);
 
     public BaseFeature(FileConfiguration fileCfg, Logger logger) {
@@ -51,5 +54,9 @@ public abstract class BaseFeature {
 
     public FeatureType getFeatureType() {
         return featureType;
+    }
+    
+    public BaseListener getListener() {
+        return listener;
     }
 }

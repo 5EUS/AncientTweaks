@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "verify",
+            "type": "shell",
+            "command": "mvn -B verify",
+            "group": "build"
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "mvn -B test",
+            "group": "test"
+        },
+        {
+            "label": "Build Spigot Plugin",
+            "type": "shell",
+            "command": "mvn clean package",
+            "group": "build"
+        },
+        {
+            "label": "Deploy to Test Server",
+            "type": "shell",
+            "dependsOn": "Build Spigot Plugin",
+            "command": "cp target/AncientTweaks-*.jar ~/Git/AncientTweaks/Server/plugins/ && screen -S spigot-test -p 0 -X stuff \"reload confirm$(printf '\\r')\"",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

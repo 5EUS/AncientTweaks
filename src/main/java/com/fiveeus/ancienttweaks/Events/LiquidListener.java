@@ -4,13 +4,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockFromToEvent;
 
 import com.fiveeus.ancienttweaks.Features.BaseFeature;
-import com.fiveeus.ancienttweaks.Features.FeatureType;
 
-public class LavaListener extends BaseListener {
+public class LiquidListener extends BaseListener {
 
-    public LavaListener(BaseFeature feature) {
+    public LiquidListener(BaseFeature feature) {
         super(feature);
-        featureType = FeatureType.OLDLAVA;
     }
 
     @EventHandler

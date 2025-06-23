@@ -4,13 +4,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockFromToEvent;
 
+import com.fiveeus.ancienttweaks.AncientTweaks;
 import com.fiveeus.ancienttweaks.Config.ConfigHelper;
+import com.fiveeus.ancienttweaks.Events.LiquidListener;
 import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class OldLava extends LiquidFeature {
@@ -24,6 +27,8 @@ public class OldLava extends LiquidFeature {
 
     public OldLava(FileConfiguration fileCfg, Logger logger) {
         super(fileCfg, logger);
+
+        listener = new LiquidListener(this);
 
         featureType = FeatureType.OLDLAVA;
         configEnabledStr = "old-lava";
@@ -54,8 +59,21 @@ public class OldLava extends LiquidFeature {
                 if (isMaterialProtected(rel.getType())) {
                     continue;
                 }
+                
+                Material mat = rel.getType();
+                Integer delay = getMeltDelay(mat);
 
-                rel.setType(lavaMaterial);
+                if (mat == Material.AIR || delay == null) {
+                    rel.setType(lavaMaterial);
+                } 
+                else {
+                    Bukkit.getScheduler().runTaskLater(AncientTweaks.getPluginInstance(), () -> {
+                        if (isEnabled() && rel.getType() == mat) {
+                            rel.setType(Material.AIR);
+                        }
+                        
+                    }, delay);
+                }
             }  
         }
     }
@@ -66,7 +84,7 @@ public class OldLava extends LiquidFeature {
 
     public Integer getMeltDelay(Material mat) {
         Integer level = meltingLevels.get(mat);
-        return level != null ? meltDelays.getOrDefault(level, 100) : null;
+        return level != null ? meltDelays.getOrDefault(level, 0) : null;
     }
 
     public Boolean isMaterialProtected(Material mat) {

@@ -2,11 +2,14 @@
 features:
   old-lava: false
   old-water: false
+  falling-block: false
+  old-tnt-activation: false
 
 # Protected Materials (does not interact with liquid physics)
 protected-materials: 
   - BEDROCK
   - BARRIER  
+  - LAVA
 
 # Melting Config
 melting-levels:

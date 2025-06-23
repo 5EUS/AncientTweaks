@@ -3,5 +3,8 @@ package com.fiveeus.ancienttweaks.Features;
 public enum FeatureType {
     NONE,
     OLDLAVA, 
-    OLDWATER
+    OLDWATER,
+    FALLINGBLOCK,
+    TNT_ACTIVATION,
+    IRON_DOOR
 }

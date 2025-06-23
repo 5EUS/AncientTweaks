@@ -4,10 +4,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.fiveeus.ancienttweaks.AncientTweaks;
 import com.fiveeus.ancienttweaks.Features.BaseFeature;
 import com.fiveeus.ancienttweaks.Features.FeatureType;
 import com.fiveeus.ancienttweaks.Features.Features;
@@ -104,6 +106,9 @@ public class FeatureCommand extends PlayerCommand {
         String enabledStr = ChatColor.RED + "Disabled ";
         if (enabled) {
             enabledStr = ChatColor.GREEN + "Enabled ";
+        }
+        else {
+            Bukkit.getScheduler().cancelTasks(AncientTweaks.getPluginInstance());
         }
         player.sendMessage(enabledStr + ChatColor.AQUA + feature.getName());
     }
