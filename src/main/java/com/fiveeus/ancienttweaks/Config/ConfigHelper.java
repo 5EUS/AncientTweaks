@@ -1,0 +1,88 @@
+package com.fiveeus.ancienttweaks.Config;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+
+public class ConfigHelper {
+
+    public static Map<Material, Integer> getMeltingLevels(FileConfiguration config, Logger logger) {
+
+        Map<Material, Integer> result = new HashMap<>();
+
+        ConfigurationSection section = config.getConfigurationSection("melting-levels");
+        if (section == null) {
+            logger.log(Level.SEVERE, "Cannot find config section: melting-levels");
+            throw new IllegalStateException("Cannot find config section: melting-levels");
+        }
+
+        for (String levelStr : section.getKeys(false)) {
+            int level = Integer.parseInt(levelStr);
+            List<String> materials = section.getStringList(levelStr);
+            for (String matName : materials) {
+                Material material = Material.matchMaterial(matName);
+                if (material != null) {
+                    result.put(material, level);
+                } else {
+                    logger.log(Level.WARNING, "Unknown material in config: {0}", matName);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Map<Integer, Integer> getMeltDelays(FileConfiguration config, Logger logger) {
+
+        Map<Integer, Integer> result = new HashMap<>();
+
+        ConfigurationSection section = config.getConfigurationSection("melt-delays");
+        if (section == null) {
+            logger.log(Level.SEVERE, "Cannot find config section: melt-delays");
+            throw new IllegalStateException("Cannot find config section: melt-delays");
+        }
+
+        for (String key : section.getKeys(false)) {
+            try {
+                int level = Integer.parseInt(key);
+                int delay = section.getInt(key);
+                result.put(level, delay);
+            } catch (NumberFormatException e) {
+                logger.log(Level.WARNING, "Invalid delay level: {0}", key);
+            }
+        }
+
+        return result;
+    }
+
+    public static Set<Material> getProtectedMaterials(FileConfiguration config, Logger logger) {
+
+        Set<Material> result = new HashSet<>();
+
+        List<String> materialStrings = config.getStringList("protected-materials");
+        if (materialStrings.isEmpty()) {
+            logger.log(Level.SEVERE, "Cannot find config section: protected-materials");
+            return result;
+        }
+
+        for (String key : materialStrings) {
+            Material mat = Material.matchMaterial(key);
+            if (mat == null) {
+                logger.log(Level.WARNING, "Invalid material in protected-materials: {0}", key);
+                continue;
+            }
+            result.add(mat);
+        }
+
+        return result;
+
+    }
+}

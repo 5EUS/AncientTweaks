@@ -1,0 +1,25 @@
+# Feature Default States
+features:
+  old-lava: false
+  old-water: false
+
+# Protected Materials (does not interact with liquid physics)
+protected-materials: 
+  - BEDROCK
+  - BARRIER  
+
+# Melting Config
+melting-levels:
+  1:
+    - GRASS_BLOCK
+    - DIRT
+  2:
+    - STONE
+    - COBBLESTONE
+  3:
+    - OBSIDIAN
+
+melt-delays:
+  1: 60   # in ticks (3 seconds)
+  2: 120 
+  3: 200

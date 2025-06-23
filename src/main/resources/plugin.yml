@@ -2,3 +2,12 @@ name: AncientTweaks
 version: 0.1
 main: com.fiveeus.ancienttweaks.AncientTweaks
 api-version: 1.20
+commands:
+  features:
+    description: List and manage loaded features
+    usage: /features
+    permission: af.features.base
+permissions:
+  af.features.base:
+    description: Allows use of /features
+    default: true
