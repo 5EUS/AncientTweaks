@@ -1,9 +1,11 @@
 # Feature Default States
+# The default state at startup for features provided by this plugin
 features:
   old-lava: false
   old-water: false
   falling-block: false
   old-tnt-activation: false
+  iron-door: false
 
 # Protected Materials (does not interact with liquid physics)
 protected-materials: 
@@ -11,18 +13,29 @@ protected-materials:
   - BARRIER  
   - LAVA
 
-# Melting Config
+# Melting Levels
+# Matches with the 'melt-delays' list
 melting-levels:
   1:
     - GRASS_BLOCK
     - DIRT
+    - SAND
+    - COAL_ORE
+    - GLASS
   2:
     - STONE
     - COBBLESTONE
   3:
     - OBSIDIAN
 
+# Per-level timings (ticks)
 melt-delays:
-  1: 60   # in ticks (3 seconds)
+  1: 60
   2: 120 
   3: 200
+
+# Transformations during melting
+# wildcard 'default' is used to denote the option for materials unspecified, which will then melt to AIR
+melt-transformations:
+  default: COAL_ORE
+  SAND: GLASS

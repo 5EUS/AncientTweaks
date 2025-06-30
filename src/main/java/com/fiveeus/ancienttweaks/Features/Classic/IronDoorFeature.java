@@ -1,7 +1,5 @@
 package com.fiveeus.ancienttweaks.Features.Classic;
 
-import java.util.logging.Logger;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -17,14 +15,15 @@ import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class IronDoorFeature extends BaseFeature {
 
-    public IronDoorFeature(FileConfiguration fileCfg, Logger logger) {
-        super(fileCfg, logger);
+    public IronDoorFeature(FileConfiguration fileCfg) {
+        super(fileCfg);
 
         listener = new BlockDamageListener(this);
 
         featureType = FeatureType.IRON_DOOR;
         configEnabledStr = "iron-door";
         name = "Iron Doors";
+        logEnabled();
     }
 
     @Override

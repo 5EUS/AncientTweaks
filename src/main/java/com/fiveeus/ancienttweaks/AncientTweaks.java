@@ -20,7 +20,7 @@ public class AncientTweaks extends JavaPlugin {
 
         instance = this;
         commandManager = new CommandManager();
-        featureList = new Features(getConfig(), getLogger());
+        featureList = new Features(getConfig());
         
         saveDefaultConfig();
 

@@ -1,7 +1,5 @@
 package com.fiveeus.ancienttweaks.Features.Classic;
 
-import java.util.logging.Logger;
-
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
@@ -14,14 +12,15 @@ import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class TNTActivationFeature extends BaseFeature {
 
-    public TNTActivationFeature(FileConfiguration fileCfg, Logger logger) {
-        super(fileCfg, logger);
+    public TNTActivationFeature(FileConfiguration fileCfg) {
+        super(fileCfg);
 
         listener = new BlockBreakListener(this);
 
         featureType = FeatureType.TNT_ACTIVATION;
         configEnabledStr = "old-tnt-activation";
         name = "Old TNT Activation";
+        logEnabled();
     }
 
     @Override

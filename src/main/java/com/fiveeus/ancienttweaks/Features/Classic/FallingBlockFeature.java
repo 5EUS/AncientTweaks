@@ -1,7 +1,5 @@
 package com.fiveeus.ancienttweaks.Features.Classic;
 
-import java.util.logging.Logger;
-
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Event;
@@ -13,14 +11,15 @@ import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class FallingBlockFeature extends BaseFeature {
 
-    public FallingBlockFeature(FileConfiguration fileCfg, Logger logger) {
-        super(fileCfg, logger);
+    public FallingBlockFeature(FileConfiguration fileCfg) {
+        super(fileCfg);
 
         listener = new FallingBlockListener(this);
 
         featureType = FeatureType.FALLINGBLOCK;
         configEnabledStr = "falling-block";
         name = "Old Falling Blocks";
+        logEnabled();
     }
 
     @Override
@@ -35,5 +34,4 @@ public class FallingBlockFeature extends BaseFeature {
             }
         }
     }
-    
 }

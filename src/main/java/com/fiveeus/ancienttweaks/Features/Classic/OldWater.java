@@ -1,7 +1,5 @@
 package com.fiveeus.ancienttweaks.Features.Classic;
 
-import java.util.logging.Logger;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,14 +13,15 @@ public class OldWater extends LiquidFeature {
 
     private Material waterMaterial = Material.WATER;
 
-    public OldWater(FileConfiguration fileCfg, Logger logger) {
-        super(fileCfg, logger);
+    public OldWater(FileConfiguration fileCfg) {
+        super(fileCfg);
 
         listener = new LiquidListener(this);
 
         featureType = FeatureType.OLDWATER;
         configEnabledStr = "old-water";
         name = "Old Water";
+        logEnabled();
     }
 
     @Override
