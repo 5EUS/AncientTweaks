@@ -12,14 +12,11 @@ import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class TNTActivationFeature extends BaseFeature {
 
-    public TNTActivationFeature(FileConfiguration fileCfg) {
-        super(fileCfg);
+    public TNTActivationFeature(FileConfiguration fileCfg, FeatureType featureType) {
+        super(fileCfg, featureType);
 
         listener = new BlockBreakListener(this);
 
-        featureType = FeatureType.TNT_ACTIVATION;
-        configEnabledStr = "old-tnt-activation";
-        name = "Old TNT Activation";
         logEnabled();
     }
 

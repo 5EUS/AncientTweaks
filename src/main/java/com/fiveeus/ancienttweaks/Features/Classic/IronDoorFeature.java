@@ -15,14 +15,11 @@ import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class IronDoorFeature extends BaseFeature {
 
-    public IronDoorFeature(FileConfiguration fileCfg) {
-        super(fileCfg);
+    public IronDoorFeature(FileConfiguration fileCfg, FeatureType featureType) {
+        super(fileCfg, featureType);
 
         listener = new BlockDamageListener(this);
 
-        featureType = FeatureType.IRON_DOOR;
-        configEnabledStr = "iron-door";
-        name = "Iron Doors";
         logEnabled();
     }
 

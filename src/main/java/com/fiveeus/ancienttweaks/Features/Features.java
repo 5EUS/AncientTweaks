@@ -23,7 +23,7 @@ public class Features {
         features.clear();
 
         for (FeatureType type : FeatureType.values()) {
-            type.instantiate(fileCfg).ifPresent(features::add);
+            type.instantiate(fileCfg, type).ifPresent(features::add);
         }
     }
 

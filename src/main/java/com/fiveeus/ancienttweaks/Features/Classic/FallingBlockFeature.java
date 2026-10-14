@@ -11,14 +11,11 @@ import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public class FallingBlockFeature extends BaseFeature {
 
-    public FallingBlockFeature(FileConfiguration fileCfg) {
-        super(fileCfg);
+    public FallingBlockFeature(FileConfiguration fileCfg, FeatureType featureType) {
+        super(fileCfg, featureType);
 
         listener = new FallingBlockListener(this);
 
-        featureType = FeatureType.FALLINGBLOCK;
-        configEnabledStr = "falling-block";
-        name = "Old Falling Blocks";
         logEnabled();
     }
 

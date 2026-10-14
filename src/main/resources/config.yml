@@ -4,7 +4,8 @@ features:
   old-lava: false
   old-water: false
   falling-block: false
-  old-tnt-activation: false
+  tnt-activation: false
+  old-inventory: false
   iron-door: false
 
 # Protected Materials (does not interact with liquid physics)

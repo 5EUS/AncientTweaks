@@ -40,13 +40,10 @@ public class OldLava extends LiquidFeature {
     }
     private final Set<BlockPos> visited = new HashSet<>();
 
-    public OldLava(FileConfiguration fileCfg) {
-        super(fileCfg);
+    public OldLava(FileConfiguration fileCfg, FeatureType featureType) {
+        super(fileCfg, featureType);
 
         listener = new LiquidListener(this);
-        featureType = FeatureType.OLDLAVA;
-        configEnabledStr = "old-lava";
-        name = "Old Lava";
         mustReload = true;
 
         meltingLevels = ConfigHelper.getMeltingLevels(fileCfg, logger);
@@ -78,10 +75,10 @@ public class OldLava extends LiquidFeature {
             return;
         }
 
-        propagate(startBlock);
+        propagate(startBlock, true);
     }
 
-    private void propagate(Block startBlock) {
+    private void propagate(Block startBlock, Boolean recurse) {
         for (Block rel : getRelatives(startBlock)) {
             Material mat = rel.getType();
             if (isMaterialProtected(mat)) {
@@ -96,11 +93,11 @@ public class OldLava extends LiquidFeature {
                 startTransformationTask(rel, mat, delay);
             }
 
-            if (airBlocks(rel) == 0) {
+            if (airBlocks(rel) == 0 && recurse) {
                 Bukkit.getScheduler().runTaskLater(
                     AncientTweaks.getPluginInstance(), 
                     () -> {
-                        propagate(rel);
+                        propagate(rel, false);
                     }, 30);
             }
         }
@@ -142,6 +139,7 @@ public class OldLava extends LiquidFeature {
 
                 rel.setType(result);
                 startTransformationTask(rel, result, 60); // TODO coal delay config
+                propagate(rel, true);
             }
         }, delay);
     }

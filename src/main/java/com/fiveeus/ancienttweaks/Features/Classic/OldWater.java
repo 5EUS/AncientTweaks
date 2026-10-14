@@ -13,14 +13,11 @@ public class OldWater extends LiquidFeature {
 
     private Material waterMaterial = Material.WATER;
 
-    public OldWater(FileConfiguration fileCfg) {
-        super(fileCfg);
+    public OldWater(FileConfiguration fileCfg, FeatureType featureType) {
+        super(fileCfg, featureType);
 
         listener = new LiquidListener(this);
 
-        featureType = FeatureType.OLDWATER;
-        configEnabledStr = "old-water";
-        name = "Old Water";
         logEnabled();
     }
 

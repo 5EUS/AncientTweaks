@@ -7,13 +7,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import com.fiveeus.ancienttweaks.AncientTweaks;
 import com.fiveeus.ancienttweaks.Features.BaseFeature;
+import com.fiveeus.ancienttweaks.Features.FeatureType;
 
 public abstract class LiquidFeature extends BaseFeature {
 
     private final int debugBlockDelay = 20;
 
-    public LiquidFeature(FileConfiguration fileCfg) {
-        super(fileCfg);
+    public LiquidFeature(FileConfiguration fileCfg, FeatureType featureType) {
+        super(fileCfg, featureType);
     }
 
     protected final BlockFace[] blockFaces = new BlockFace[]{

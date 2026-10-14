@@ -31,6 +31,17 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Deploy Plugin via rsync",
+            "type": "shell",
+            "dependsOn": "Build Spigot Plugin",
+            "command": "rsync -av target/AncientTweaks-*.jar zeus@192.168.0.60:/home/zeus/Servers/Lava/plugins/",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }
